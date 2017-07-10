@@ -1,50 +1,45 @@
-#include<stdio.h>
 #include<iostream>
 using namespace std;
 int no_of_pred;
 int no_of_arg[10];
 int i,j;
 char nouse;
-char predicate[10][10];
-char argument[10][10];
+string predicate[10];
+string argument[10][10];
 
 
 void unify();
 void display();
 void chk_arg_pred();
 
-
-   void main()
+ int main()
    {
    char ch;
    do{
 
  
-            printf("\t=========PROGRAM FOR UNIFICATION=========\n");
-            printf("\nEnter Number of Predicates:- [ ]\b\b");
-            scanf("%d",&no_of_pred);
+            cout<<"\t=========PROGRAM FOR UNIFICATION=========\n";
+            cout<<"\nEnter Number of Predicates:- [ ]\b\b";
+            cin>>no_of_pred;
 
             for(i=0;i<no_of_pred;i++)
             {
-		    scanf("%c",&nouse);    //to accept "Enter" as a character
-		    printf("\nEnter Predicate %d:-[ ]\b\b",i+1);
-		    
-		    scanf("%s",&predicate[i][10]);
-		    printf("%s",predicate[i]);
-		    printf("\n\tEnter No.of Arguments for Predicate %c:-[ ]\b\b",predicate[i]);
-		    scanf("%d",&no_of_arg[i]);
+		    cout<<"\nEnter Predicate :-[ ]\b\b"<<i+1;
+		    cin>>predicate[i];
+		    cout<<predicate[i];
+		    cout<<"\n\tEnter No.of Arguments for Predicate:-[ ]\b\b"<<predicate[i];
+		    cin>>no_of_arg[i];
 	                for(j=0;j<no_of_arg[i];j++)
 	                {
-	                 scanf("%c",&nouse);
-	                 printf("\n\tEnter argument %d:( )\b\b",j+1);
-	                 scanf("%c",&argument[i][j]);
+	                 cout<<"\n\tEnter argument :( )\b\b"<<j+1;
+	                 cin>>argument[i][j];
 	                }
             }
 
             display();
-            chk_arg_pred();
-            printf("Do you want to continue(y/n): ");
-            scanf("%c",&ch);
+            //chk_arg_pred();
+            cout<<"Do you want to continue(y/n): ";
+            cin>>ch;
        }while(ch=='y');
    }
 
@@ -52,17 +47,17 @@ void chk_arg_pred();
 
    void display()
    {
-       printf("\n\t=======PREDICATES ARE======");
+       cout<<"\n\t=======PREDICATES ARE======";
             for(i=0;i<no_of_pred;i++)
             {
-             printf("\n\t%c(",predicate[i]);
+             cout<<"\n\t"<<predicate[i]<<"(";
                         for(j=0;j<no_of_arg[i];j++)
                         {
-                        printf("%c",argument[i][j]);
-                        if(j!=no_of_arg[i]-1)
-                                    printf(",");
+		                cout<<argument[i][j];
+		                if(j!=no_of_arg[i]-1)
+		                            cout<<",";
                         }
-             printf(")");
+             cout<<")";
             }
    }
 
@@ -76,8 +71,8 @@ void chk_arg_pred();
             {
                         if(predicate[i]!=predicate[i+1])
                         {
-                        printf("\nPredicates not same..");
-                        printf("\nUnification cannot progress!");
+                        cout<<"\nPredicates not same..";
+                        cout<<"\nUnification cannot progress!";
                         pred_flag=1;
                         break;
                         }
@@ -89,7 +84,7 @@ void chk_arg_pred();
             {
                         if(no_of_arg[i]!=no_of_arg[i+1])
                         {
-                        printf("\nArguments Not Same..!");
+                        cout<<"\nArguments Not Same..!";
                         arg_flag=1;
                         break;
                         }
@@ -110,15 +105,15 @@ void chk_arg_pred();
                         if(argument[i][j]!=argument[i+1][j])
                         {
                           if(flag==0)
-                          printf("\n\t======SUBSTITUTION IS======");
-                        printf("\n\t%c/%c",argument[i+1][j],argument[i][j]);
+                          cout<<"\n\t======SUBSTITUTION IS======";
+                        cout<<"\n\t"<<argument[i+1][j]<<argument[i][j];
                          flag++;
                         }
                 }
             }
             if(flag==0)
-            {          printf("\nArguments are Identical...");
-                        printf("\nNo need of Substitution\n");
+            {          cout<<"\nArguments are Identical...";
+                        cout<<"\nNo need of Substitution\n";
             }
    }
 

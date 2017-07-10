@@ -1,9 +1,11 @@
 #include<stdio.h>
+#include<iostream>
+using namespace std;
 int no_of_pred;
 int no_of_arg[10];
 int i,j;
 char nouse;
-char predicate[10];
+char predicate[10][10];
 char argument[10][10];
 
 
@@ -24,17 +26,19 @@ void chk_arg_pred();
 
             for(i=0;i<no_of_pred;i++)
             {
-            scanf("%c",&nouse);    //to accept "Enter" as a character
-            printf("\nEnter Predicate %d:-[ ]\b\b",i+1);
-            scanf("%c",&predicate[i]);
-            printf("\n\tEnter No.of Arguments for Predicate %c:-[ ]\b\b",predicate[i]);
-            scanf("%d",&no_of_arg[i]);
-                        for(j=0;j<no_of_arg[i];j++)
-                        {
-                         scanf("%c",&nouse);
-                         printf("\n\tEnter argument %d:( )\b\b",j+1);
-                         scanf("%c",&argument[i][j]);
-                        }
+		    scanf("%c",&nouse);    //to accept "Enter" as a character
+		    printf("\nEnter Predicate %d:-[ ]\b\b",i+1);
+		    
+		    scanf("%s",&predicate[i][10]);
+		    printf("%s",predicate[i]);
+		    printf("\n\tEnter No.of Arguments for Predicate %c:-[ ]\b\b",predicate[i]);
+		    scanf("%d",&no_of_arg[i]);
+	                for(j=0;j<no_of_arg[i];j++)
+	                {
+	                 scanf("%c",&nouse);
+	                 printf("\n\tEnter argument %d:( )\b\b",j+1);
+	                 scanf("%c",&argument[i][j]);
+	                }
             }
 
             display();
